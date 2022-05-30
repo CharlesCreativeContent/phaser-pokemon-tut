@@ -1,0 +1,348 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+.modal-body, .empty, #messageBoard{
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),
+    linear-gradient(to right top, black,grey);
+}
+
+.content-wrapper-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+  justify-content: space-between;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),
+    linear-gradient(
+      to right top,
+      #cf4af3,
+      #e73bd7,
+      #f631bc,
+      #fd31a2,
+      #ff3a8b,
+      #ff4b78,
+      #ff5e68,
+      #ff705c,
+      #ff8c51,
+      #ffaa49,
+      #ffc848,
+      #ffe652
+    );
+  padding-left: 10%;
+  color : white;
+}
+@media screen and (min-width: 600px){
+
+  .content-wrapper-header {
+    padding-left: 20%;
+  }
+}
+
+
+
+.img-content {
+  font-weight: 500;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.content-wrapper-img {
+  height: 10vh;
+}
+
+#fight,
+#bag,
+#monsters,
+#run {
+  width: 50vw;
+  float: left;
+  clear: none !important;
+}
+#fight, #fightColor {
+
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),
+      linear-gradient(to right top, #1488cc, #2b32b2);
+}
+#bag, .bagColor {
+
+      background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),
+        linear-gradient(to right top, #ff512f, #dd2476);
+}
+#monsters, .monstersColor {
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),
+    linear-gradient(
+      to right top,
+      #cf4af3,
+      #e73bd7,
+      #f631bc,
+      #fd31a2,
+      #ff3a8b,
+      #ff4b78,
+      #ff5e68,
+      #ff705c,
+      #ff8c51,
+      #ffaa49,
+      #ffc848,
+      #ffe652
+    );
+}
+#run, .runColor {
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),
+    linear-gradient(to right top, #22c1c3, #fdbb2d);
+}
+.fire{
+  background: #f12711;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #f5af19, #f12711);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #f5af19, #f12711); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),linear-gradient(to top, #f5af19, #f12711);
+}
+.grass{
+  background: #11998e;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),linear-gradient(to top, #38ef7d, #11998e);
+color: white;
+
+}
+.psychic{
+  background: #d9a7c7;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #fffcdc, #d9a7c7);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #fffcdc, #d9a7c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),linear-gradient(to top, #fffcdc, #d9a7c7);
+
+}
+.water{
+  background: #000046;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),linear-gradient(to top, #1CB5E0, #000046);
+color:white;
+
+}
+.fighting{
+
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),linear-gradient( to top, #F05F57 10%, #360940 100%);
+  color: white;
+}
+.ice{
+  background: #B2FEFA;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #0ED2F7, #B2FEFA);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #0ED2F7, #B2FEFA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to top, #0ED2F7, #B2FEFA);
+}
+.ghost{
+  background: #20002c;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #cbb4d4, #20002c);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #cbb4d4, #20002c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),linear-gradient(to top, #cbb4d4, #20002c);
+  color: white;
+
+}
+.electric{
+  background: #fffc00;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #ffffff, #fffc00);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #ffffff, #fffc00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),linear-gradient(to top, #ffffff, #fffc00);
+}
+.fairy{
+  background: #FBD3E9;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #BB377D, #FBD3E9);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #BB377D, #FBD3E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),linear-gradient(to bottom, #BB377D, #FBD3E9);
+}
+.ground{
+background: #ff7e5f;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #feb47b, #ff7e5f);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #feb47b, #ff7e5f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),linear-gradient(to top, #feb47b, #ff7e5f);
+}
+.rock{
+background: #334d50;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #cbcaa5, #334d50);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #cbcaa5, #334d50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),linear-gradient(to bottom, #cbcaa5, #334d50);
+
+}
+.bug{
+  background: #ADD100;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #7B920A, #ADD100);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #7B920A, #ADD100); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to bottom, #7B920A, #ADD100);
+}
+.poison{background: #a80077;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #66ff00, #a80077);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #66ff00, #a80077); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to bottom, #66ff00, #a80077);
+color: white;
+}
+.flying{
+  background: #E0EAFC;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to bottom, #CFDEF3, #E0EAFC);
+}
+.dragon{
+  background: #5A3F37;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #2C7744, #5A3F37);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #2C7744, #5A3F37); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to bottom, #2C7744, #5A3F37);
+  color: white;
+
+}
+.steel{
+  background: #E6DADA;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #274046, #E6DADA);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #274046, #E6DADA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to bottom, #274046, #E6DADA);
+color: white;
+}
+.normal{
+  background: #8e9eab;  /* fallback for old browsers */
+
+background: -webkit-linear-gradient(to top, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to top, #eef2f3, #8e9eab);
+}
+
+
+body{
+  height: 100vh;
+  width: 100vw;
+}
+#moves,#move1,#move2,#move3,#move4{
+  border:none;
+}
+#moves, .modal{
+  text-transform: capitalize;
+  text-align: center;
+}
+
+main {
+  height: 80vh;
+}
+
+nav{
+  height: 20vh;
+  z-index: 5;
+  position: absolute;
+  bottom: 0;
+  background-color: white
+}
+ nav ol {
+   height: 20vh;
+   z-index: 5;
+ }
+
+nav li {
+  float: left;
+  width: 50vw;
+  height: 50%;
+  text-align: center;
+  border: 1px solid black;
+  font-size: 1.6rem;
+}
+
+.disappear {
+  display: none;
+}
+
+main section {
+  height: 25vh;
+}
+
+img {
+  height: 35vh;
+}
+
+source {
+  height: 35vh;
+}
+
+#playerImg  * {
+  height: 60vh;
+  max-width: 60vw;
+  z-index: 3;
+  position: absolute;
+  bottom: 0;
+  left:  0;
+}
+
+span{
+  float: right;
+}
+
+.blink{
+  opacity:0.5 ;
+}
+
+main{
+  background-image: url(https://raw.githubusercontent.com/CharlesCreativeContent/phaser-tut/main/public/images/arena-forrest.png);
+  background-size: 100vw 80vh;
+}
+
+#enemyImg{
+position: absolute;
+top:  15vh;
+right:  20vw;
+}
+
+#player .card{
+position: relative;
+top: 35vh;
+left: 65vw;
+z-index: 2
+}
+.card-header{
+text-transform: capitalize;
+}
+.progress-bar{
+  transition-duration: 3s;
+}
+
+#HP{
+  color: white;
+}
+
+.content-wrapper-header{
+  text-align: center;
+}
+
+.modal-footer{
+  display:none;
+}
+
+.modal-footer{
+  display:none;
+}
+
+
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
+  }
+}
+#unknown {
+  animation: cursor-blink 1.5s steps(20) infinite;
+  animation-direction: alternate;
+  height: 20vh;
+  position : absolute;
+  bottom : 0;
+  right : 0;
+}
+#messageBoard{
+  height: 20vh;
+  width: 100vw;
+  z-index: -2;
+  color: white;
+}

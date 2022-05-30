@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Polymon</title>
+
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+
+    <link rel="preload" href="pokeDex.js" as="script">
+    <link rel="preload" href="user.js" as="script">
+    <link rel="preload" href="pokemon.js" as="script">
+
+    <style>
+
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    button{
+      display: none;
+    }
+
+    @media screen and (max-width:1280px){
+      button{
+      position: absolute;
+      height:10vh;
+      width:20vw;
+      bottom: 0;
+      left: 50%;
+      opacity: 0.5;
+      transform: translate(-150%, -100%);
+      }
+      #button2{
+      transform: translate(-50%, -200%);
+      }
+      #button5{
+      transform: translate(-50%, -100%);
+      }
+      #button3{
+      transform: translate(-50%, 0);
+      }
+      #button4{
+      transform: translate(50%, -100%);
+      }
+    }
+
+    img{
+      height: 3rem;
+    }
+
+
+    #blink_me{
+      position: absolute;
+      top:50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+  </head>
+  <body id="game" style="background-size: 100% auto;background-repeat: no-repeat;background-position: center;">
+  <h1 style="text-align: center;" id="blink_me">Loading<img src="https://raw.githubusercontent.com/CharlesCreativeContent/phaser-tut/main/public/images/HD/Unown_Exclamation.gif"></span></h1>
+  <button id="button1" style="pointer-events:none;" type="button" class="btn btn-secondary">◀</button>
+  <button id="button2" style="pointer-events:none;" type="button" class="btn btn-secondary">▲</button>
+  <button id="button5" style="pointer-events:none;" type="button" class="btn btn-secondary"></button>
+  <button id="button3" style="pointer-events:none;" type="button" class="btn btn-secondary">▼</button>
+  <button id="button4" style="pointer-events:none;" type="button" class="btn btn-secondary">▶</button>
+</body>
+<!-- Jquery CDN-->
+
+<script charset="utf-8">
+
+document.querySelector("body").style.backgroundColor = `white`
+//dislays random loading image;
+let pathToImages = "https://raw.githubusercontent.com/CharlesCreativeContent/phaser-tut/main/public/images/Load/"
+let desktopImage = ["loader1.gif","loader2.gif","loader3.gif","loader4.gif","loader5.gif","loader6.gif","loader7.gif","loader8.gif","loader9.gif","loader10.gif",
+"loader11.gif","loader12.gif","loader13.gif","loader14.gif","loader15.gif","loader16.gif","loader17.gif","loader18.gif","loader19.gif","loader20.gif",
+"loader21.gif","loader22.gif","loader23.gif","loader24.gif","loader25.gif","loader26.gif","loader27.gif","loader28.gif","loader29.gif","loader30.gif",
+"loader31.gif","loader32.gif","loader33.gif","loader34.gif","loader35.gif","loader36.gif","loader37.gif","loader38.gif","loader39.gif","loader40.gif",
+"loader41.gif","loader42.gif","loader43.gif","loader44.gif","loader45.gif","loader46.gif","loader47.gif"].sort((a,b)=>Math.random()-0.5)[0]
+let mobileImage = ["background5.gif","background6.gif","background7.gif"].sort((a,b)=>Math.random()-0.5)[0]
+
+
+let BackgroundColors = {
+"26": "black",
+}
+
+function rescale(){
+
+  let loader = window.innerWidth<window.innerHeight ? mobileImage : desktopImage
+  document.querySelector("body").style.backgroundImage = `url(${ pathToImages + loader })`
+
+  if(loader===desktopImage){
+  //change background colors for desktop
+  let loaderIndex = parseInt(loader.slice(6))
+  if(loaderIndex>=26){
+  document.querySelector("body").style.backgroundColor = `black`
+  }
+}
+}
+window.addEventListener("resize",rescale)
+rescale()
+</script>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.52.0/phaser.min.js"></script>
+  <script src="pokeDex.js" charset="utf-8"></script>
+  <script src="user.js" charset="utf-8"></script>
+  <script src="pokemon.js" charset="utf-8"></script>
+
+  <script>
+
+  //Blink Loading icon
+  (function blink() {
+    $('#blink_me').fadeOut(500).fadeIn(500, blink);
+  })();
+  </script>
+</html>

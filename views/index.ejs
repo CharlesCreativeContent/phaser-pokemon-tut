@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Polymon</title>
+
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js" as="script">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+  <div id="input-box" style="display: none">
+    <h3>CryptoMon</h3>
+    <br />
+    <br />
+    <div id="second-window">
+      <button class="login second rainbow">Login</button>
+      <br />
+      <br />
+      <button class="signup second">Sign-Up</button>
+      <br />
+      <br />
+      <button class="settings second">Settings</button>
+      <br />
+      <br />
+      <button class="credits second">Credits</button>
+    </div>
+
+    <div id="login-form" style="display: none">
+
+      <form action="/login" method="post">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Red@CryptoMon.Com">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="1234Cats!">
+        <button type="submit" class="login second">Login</button>
+        <br />
+      </form>
+
+    </div>
+
+    <div id="signup-form" style="display: none">
+
+      <form action="/signup" method="post">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Red@CryptoMon.Com">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="1234Cats!">
+        <button class="second" type="submit">Sign-Up</button>
+        <br />
+      </form>
+
+    </div>
+
+    <div id="settings-form" style="display: none">
+
+    <h2>Coming Soon</h2>
+
+    </div>
+
+    <div id="credits-form" style="display: none">
+
+    <h2>Coming Soon</h2>
+
+    </div>
+
+  </div>
+
+  <div id="phaser-example">
+
+  </div>
+</body>
+
+
+<script charset="utf-8">
+document.querySelector("body").style.backgroundColor = `black`
+let pathToImage = "https://raw.githubusercontent.com/CharlesCreativeContent/phaser-tut/main/public/images/Load/"
+//dislays random loading image
+let desktopImage = ["background3.gif","background1.webp","background2.webp"].sort((a,b)=>Math.random()-0.5)[0]
+let mobileImage = ["background5.gif","background6.gif","background7.gif"].sort((a,b)=>Math.random()-0.5)[0]
+
+function rescale(){
+
+  let loader = window.innerWidth<window.innerHeight ? mobileImage : desktopImage
+document.querySelector("body").style.backgroundImage = `url(${pathToImage+loader})`
+}
+rescale()
+window.addEventListener("resize",rescale)
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js"></script>
+<script src="/index.js"></script>
+
+</html>
