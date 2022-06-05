@@ -29,6 +29,75 @@ let UI = {
   messageBoard: document.querySelector("#messageBoard"),
   messageBody: document.querySelector("#messageBody"),
   body: document.querySelector("body"),
+  singleRender:()=>{
+    if( document.images[1].naturalWidth === 0 ){
+    renderPokemon( UI.playerImg )
+    }
+    if( document.images[0].naturalWidth === 0 ){
+    renderPokemon( UI.enemyImg , false )
+    }
+  },
+  useLibrary: {
+    catch:(name)=>{
+    if(Poke.isCaught(UI.enemyPokemon,name)){
+      user.catchPokemon = UI.enemyPokemon
+        UI.battleSequence({message:`You Caught ${UI.enemyPokemon.getUpperName()}!`,action:()=>{
+      window.location.href = "./profile"
+        }})
+    }else{
+      UI.battleSequence({message:"Pokémon broke free!",action:()=>{
+        UI.useLibrary.continueBattle()
+        }
+    })
+  }
+},
+continueBattle:()=>{
+  UI.enemyPokemon.player= false
+  UI.playerPokemon.player= true
+  UI.enemyPokemon.chooseMove()
+  UI.battleLoop(UI.enemyPokemon,UI.playerPokemon,true)
+},
+    "Pokéball": ()=>{
+      UI.useLibrary.catch("Pokéball")
+  },
+    "GreatBall": ()=>{
+      UI.useLibrary.catch("GreatBall")
+  },
+    "UltraBall": ()=>{
+      UI.useLibrary.catch("UltraBall")
+  },
+
+  "Potion": ()=>{
+
+    UI.updatePlayerHP(-UI.playerPokemon.heal(20))
+      UI.battleSequence({message:"You healed your pokemon",action:()=>{
+        UI.useLibrary.continueBattle()
+        }
+
+  })
+
+},
+"SenzeBean": ()=>{
+UI.playerPokemon.fullHeal()
+UI.updatePlayerHP(0)
+  UI.battleSequence({message:"You healed your pokemon",action:()=>{
+    UI.useLibrary.continueBattle()
+    }
+  })
+
+},
+
+"FullHeal": ()=>{
+UI.playerPokemon.status = null
+UI.updatePlayerHP(0)
+UI.battleSequence({message:"You healed your pokemon",action:()=>{
+  UI.useLibrary.continueBattle()
+  }
+
+})
+
+},
+},
   showMessageBoard: function(){
     toggleElementDisplay(UI.messageBoard)
   },
@@ -38,46 +107,28 @@ let UI = {
   hp: document.querySelector("#HP"),
   opponentHP: document.querySelector("#opponentHP"),
   renderBothPokemon: function(){
-
   renderPokemon( UI.playerImg )
   renderPokemon( UI.enemyImg , false )
 
   setTimeout(()=>{
     UI.imgTries++
     console.log(document.querySelector("#enemyImg"))
-    if( document.images[1].naturalWidth === 0 ){
-    renderPokemon( UI.playerImg )
-    }
-    if( document.images[0].naturalWidth === 0 ){
-    renderPokemon( UI.enemyImg , false )
-    }
+    UI.singleRender()
+
 
     setTimeout(()=>{
       UI.imgTries++
-      if( document.images[1].naturalWidth === 0 ){
-      renderPokemon( UI.playerImg )
-      }
-      if( document.images[0].naturalWidth === 0 ){
-      renderPokemon( UI.enemyImg , false )
-      }
+      UI.singleRender()
+
 
       setTimeout(()=>{
         UI.imgTries++
-        if( document.images[1].naturalWidth === 0 ){
-        renderPokemon( UI.playerImg )
-        }
-        if( document.images[0].naturalWidth === 0 ){
-        renderPokemon( UI.enemyImg , false )
-        }
+        UI.singleRender()
+
 
         setTimeout(()=>{
           UI.imgTries++
-          if( document.images[1].naturalWidth === 0 ){
-          renderPokemon( UI.playerImg )
-          }
-          if( document.images[0].naturalWidth === 0 ){
-          renderPokemon( UI.enemyImg , false )
-          }
+          UI.singleRender()
           UI.imgTries=0
         },200)
       },200)
@@ -114,23 +165,15 @@ let UI = {
   UI.playerPokemon.damage(num)
   let percentage = UI.playerPokemon.getLifePercentage()
 
-
-  if(percentage<50) UI.hp.className="progress-bar bg-warning"
-  if(percentage<25) UI.hp.className="progress-bar bg-danger"
-
+  UI.hpChangeColor(percentage,UI.hp)
   UI.hp.innerHTML = `${UI.playerPokemon.hp}`
-  UI.hp.style.width = `${percentage}%`
   },
 
   updateEnemyHP: function(num){
   UI.blinkOpp()
     UI.enemyPokemon.damage(num)
     let percentage = UI.enemyPokemon.getLifePercentage()
-
-    if(percentage<50) UI.opponentHP.className="progress-bar bg-warning"
-    if(percentage<25) UI.opponentHP.className="progress-bar bg-danger"
-
-  UI.opponentHP.style.width = `${percentage}%`
+    UI.hpChangeColor(percentage,UI.opponentHP)
   },
   refreshPokemon: function(){
     UI.playerPokemon= user.mainPoke;
@@ -142,13 +185,13 @@ let blinking = setInterval(()=>{
   UI.playerImg.classList.toggle("blink")
 },800)
 
+    UI.hpBarBlink(UI.hp)
 
-    UI.hp.classList.toggle("progress-bar-animated")
-    UI.hp.classList.toggle("progress-bar-striped")
     setTimeout(()=>{
       clearInterval(blinking)
-        UI.hp.classList.toggle("progress-bar-animated")
-        UI.hp.classList.toggle("progress-bar-striped")
+
+        UI.hpBarBlink(UI.hp)
+
         UI.playerImg.classList.remove("blink")
     },4000)
   },
@@ -157,13 +200,11 @@ let blinking = setInterval(()=>{
   UI.enemyImg.classList.toggle("blink")
 },800)
 
-    UI.opponentHP.classList.toggle("progress-bar-animated")
-    UI.opponentHP.classList.toggle("progress-bar-striped")
-    setTimeout(()=>{
-    UI.opponentHP.classList.toggle("progress-bar-animated")
-    UI.opponentHP.classList.toggle("progress-bar-striped")
+UI.hpBarBlink(UI.opponentHP)
+setTimeout(()=>{
 
-      clearInterval(blinking)
+  UI.hpBarBlink(UI.opponentHP)
+  clearInterval(blinking)
 
         UI.enemyImg.classList.remove("blink")
     },4000)
@@ -180,6 +221,17 @@ let blinking = setInterval(()=>{
     UI.updateMessageBody(message)
     UI.delayClick(action)
     save()
+},
+hpBarBlink:(hpElement)=>{
+  hpElement.classList.toggle("progress-bar-striped")
+  hpElement.classList.toggle("progress-bar-animated")
+},
+hpChangeColor:(percentage,hpElement)=>{
+if(percentage<100) hpElement.className="progress-bar bg-success"
+if(percentage<50) hpElement.className="progress-bar bg-warning"
+if(percentage<25) hpElement.className="progress-bar bg-danger"
+
+hpElement.style.width = `${percentage}%`
 },
 battleLoop: function(poke1,poke2,endFunction=false){
 
@@ -269,11 +321,7 @@ setupPlayerPokemon:()=>{
   UI.updateNames()
   UI.hp.innerHTML = UI.playerPokemon.hp
   let percentage = UI.playerPokemon.getLifePercentage()
-  UI.hp.style.width = `${percentage}%`
-  UI.hp.className="progress-bar bg-success"
-
-  if(percentage<50) UI.hp.className="progress-bar bg-warning"
-  if(percentage<25) UI.hp.className="progress-bar bg-danger"
+  UI.hpChangeColor(percentage,UI.hp)
 
 }
 
@@ -312,12 +360,9 @@ window.addEventListener("load", ()=>{
   UI.enemyImg.style.display = "block"
 
   let percentage = UI.playerPokemon.getLifePercentage()
-
-  if(percentage<50) UI.hp.className="progress-bar bg-warning"
-  if(percentage<25) UI.hp.className="progress-bar bg-danger"
+  UI.hpChangeColor(percentage,UI.hp)
 
   UI.hp.innerHTML = `${UI.playerPokemon.hp}`
-  UI.hp.style.width = `${percentage}%`
 
 });
 
@@ -340,7 +385,7 @@ function bag() {
     UI.itemBagBody.innerHTML += `
   <li data-item="${item.name}" class="list-group-item list-group-item-action list-group-item-dark">
   <strong  data-item="${item.name}" >${item.name}</strong>
-  <img  data-item="${item.name}"  style="height:100%;" src="https://raw.githubusercontent.com/CharlesCreativeContent/phaser-tut/main/public/images/Items/${item.name}.png"/>
+  <img  data-item="${item.name}"  style="height:100%;" src="${Items[item.name].image}"/>
     <small  data-item="${item.name}" >x</small>
     <strong  data-item="${item.name}" >${item.count}</strong>
     </li>
@@ -356,41 +401,7 @@ function bag() {
     let itemName = e.target.dataset.item
     user.useItem = itemName
 
-    let UseLibrary = {
-
-      "pokeball": ()=>{
-        if(Poke.isCaught(UI.enemyPokemon)){
-          user.catchPokemon = UI.enemyPokemon
-            UI.battleSequence({message:`You Caught ${UI.enemyPokemon.getUpperName()}!`,action:()=>{
-          window.location.href = "./profile"
-            }})
-        }else{
-          UI.battleSequence({message:"Pokémon broke free!",action:()=>{
-            UI.enemyPokemon.player= false
-            UI.playerPokemon.player= true
-            UI.enemyPokemon.chooseMove()
-            UI.battleLoop(UI.enemyPokemon,UI.playerPokemon,true)
-            }
-        })
-      }
-    },
-
-    "potion": ()=>{
-
-      UI.updatePlayerHP(-UI.playerPokemon.heal(20))
-        UI.battleSequence({message:"You healed your pokemon",action:()=>{
-          UI.enemyPokemon.player= false
-          UI.playerPokemon.player= true
-          UI.enemyPokemon.chooseMove()
-          UI.battleLoop(UI.enemyPokemon,UI.playerPokemon,true)
-          }
-
-    })
-
-  }
-}
-
-    UseLibrary[itemName]()
+    UI.useLibrary[itemName]()
 
   }));
 
@@ -407,10 +418,7 @@ function run() {
     }})
 }else{
   UI.battleSequence({message:"Pokémon stopped you from running!",action:()=>{
-    UI.enemyPokemon.player= false
-    UI.playerPokemon.player= true
-    UI.enemyPokemon.chooseMove()
-    UI.battleLoop(UI.enemyPokemon,UI.playerPokemon,true)
+    UI.useLibrary.continueBattle()
     }
 
   })
@@ -429,8 +437,7 @@ let choice = +e.target.className[0]
 user.switchPokemon(choice)
 UI.setupPlayerPokemon()
 UI.battleSequence({message:user.intro(),action:()=>{
-UI.enemyPokemon.chooseMove()
-UI.battleLoop(UI.enemyPokemon,UI.playerPokemon,true)
+  UI.useLibrary.continueBattle()
 }
 })}
 function switchTeam(){

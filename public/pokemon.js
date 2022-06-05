@@ -62,7 +62,6 @@ const gameState = {
 
 
 adjustMap()
-save()
 
 
 
@@ -84,6 +83,7 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
+    checkForUserData()
 
     //clear moveBackground
     gameState.body.style.backgroundImage = "none"
@@ -108,8 +108,6 @@ toggleDPad()
 
     developerMode(this)
 
-
-
     gameState.player = this.add.sprite(user.x, user.y, user.skin);
 
     gameState.player.setDepth(1)
@@ -117,16 +115,19 @@ toggleDPad()
     //if skin needs to be bigger, set scale
     if(Images[user.skin].scale) gameState.player.setScale(Images[user.skin].scale)
 
+    gameState.cameras = this.cameras
     this.cameras.main.startFollow(gameState.player, true, 0.5, 0.5);
 
     adjustCamera(this.cameras)
 
     loadUserRunAnimations(this)
 
-
           //clear Loading
-
           document.querySelector("#blink_me").remove()
+
+
+    //pokeball Menu Appears
+    menuAppear();
 
   }
 
@@ -597,12 +598,12 @@ window.addEventListener("resize",function(){
 function openCenter(camera,state){
 
 gameState.body.style.backgroundColor = "black"
-gameState.sceneOut(camera)
+gameState.sceneOut(gameState.cameras)
 user.newStartPosition()
 let local = {location:"Center",x:650,y:900}
 user.teleport = local
-changeMap(local,camera,state)
-gameState.sceneIn(camera)
+changeMap(local,gameState.cameras,state)
+gameState.sceneIn(gameState.cameras)
 }
 
 function updateCenterMap(){
@@ -611,8 +612,8 @@ function updateCenterMap(){
   Routes["Center"][height][13] = user.savePosition
 }
 
-function openShop(camera,state){
-gameState.sceneOut(camera)
+function openShop(){
+gameState.sceneOut(gameState.cameras)
 setTimeout(()=>{
 teleport(650,900)
 save()
@@ -621,12 +622,29 @@ window.location.href = "./mart"
 
 }
 
-function openMart(camera,state){
-gameState.sceneOut(camera)
+function openBag(){
+gameState.sceneOut(gameState.cameras)
+window.location.href = "./bag"
+}
+
+function openMart(){
+gameState.sceneOut(gameState.cameras)
 setTimeout(()=>{
 teleport(getX(),getY()+50)
 user.newSavePosition()
 save()
 window.location.href = "./mart"
 },1500)
+}
+function menuAppear() {
+  let pokeball = document.getElementById("pokeball")
+  pokeball.classList.toggle("disappear");
+  pokeball.addEventListener("click",openBag)
+
+}
+
+function checkForUserData(){
+  if(! localStorage.getItem("user")){
+    window.location.href = "/start"
+  }
 }

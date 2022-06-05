@@ -19,7 +19,7 @@ h2 {
 
 #input-box {
   width: 300px;
-  height: 250px;
+  height: 200px;
   padding: 5px 20px 20px 10px;
   position: absolute;
   left: calc(50% - 150px);

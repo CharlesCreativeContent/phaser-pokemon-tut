@@ -807,9 +807,6 @@ body.light-mode:before, body.light-mode .video-bg:before {
 .red {
   background-color: red;
 }
-.disappear {
-  display: none;
-}
 #fight, #bag, #monsters, #run {
   width: 50%;
   float: left;
@@ -829,4 +826,26 @@ body.light-mode:before, body.light-mode .video-bg:before {
 }
 .content-wrapper {
   display: block;
+}
+.disappear {
+  display: none !important;
+}
+#ranchField .app-card{
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 1110px){
+
+
+  #ranchField .app-card:nth-child(2n+3){
+  margin-left: 0;
+  }
+}
+
+
+@media only screen and (min-width: 1111px){
+
+#ranchField .app-card:nth-child(3n+4){
+  margin-left: 0;
+}
 }

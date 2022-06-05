@@ -6,6 +6,9 @@ var title;
 let input = document.getElementById("input-box");
 //Buttons
 let loginButton = document.querySelector(".login");
+let emailInput = document.getElementById("emailInput");
+let passwordInput = document.getElementById("passwordInput");
+let profileButton = document.getElementById("loginButton");
 let signUpButton = document.querySelector(".signup");
 let mainButton = document.querySelector("h3");
 let settingsButton = document.querySelector(".settings");
@@ -128,11 +131,13 @@ var game = new Phaser.Game(config);
 function showLogin() {
   loginForm.style.display = "block";
   secondWindow.style.display = "none";
+  input.style.height = "260px"
 }
 
 function showSignUp() {
   signUpForm.style.display = "block";
   secondWindow.style.display = "none";
+  input.style.height = "250px"
 }
 
 function showCredits() {
@@ -145,10 +150,18 @@ function showSettings() {
   secondWindow.style.display = "none";
 }
 
+function guestLogin() {
+emailInput.value = "guest@guest.com"
+passwordInput.value = "guest"
+profileButton.click()
+}
+
 function showMain() {
   secondWindow.style.display = "block";
   loginForm.style.display = "none";
   settingsForm.style.display = "none";
   creditsForm.style.display = "none";
   signUpForm.style.display = "none";
+  input.style.height = "200px"
 }
+  document.querySelector(".guestLogin").addEventListener("click",guestLogin)
