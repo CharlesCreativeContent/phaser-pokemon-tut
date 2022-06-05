@@ -57,6 +57,10 @@
       height: 3rem;
     }
 
+    .disappear{
+      display:none;
+    }
+
 
     #blink_me{
       position: absolute;
@@ -67,12 +71,14 @@
   </style>
   </head>
   <body id="game" style="background-size: 100% auto;background-repeat: no-repeat;background-position: center;">
-  <h1 style="text-align: center;" id="blink_me">Loading<img src="https://raw.githubusercontent.com/CharlesCreativeContent/phaser-tut/main/public/images/HD/Unown_Exclamation.gif"></span></h1>
+  <h1 style="text-align: center;" id="blink_me">Loading<img src="https://raw.githubusercontent.com/CharlesCreativeContent/phaser-tut/main/public/images/HD/Unown_Exclamation.gif"></h1>
   <button id="button1" style="pointer-events:none;" type="button" class="btn btn-secondary">◀</button>
   <button id="button2" style="pointer-events:none;" type="button" class="btn btn-secondary">▲</button>
   <button id="button5" style="pointer-events:none;" type="button" class="btn btn-secondary"></button>
   <button id="button3" style="pointer-events:none;" type="button" class="btn btn-secondary">▼</button>
   <button id="button4" style="pointer-events:none;" type="button" class="btn btn-secondary">▶</button>
+
+  <img src="https://pngimg.com/uploads/pokeball/pokeball_PNG13.png" id="pokeball" class="disappear" style="height:3rem; position: absolute; top:2rem;right:2rem;" />
 </body>
 <!-- Jquery CDN-->
 

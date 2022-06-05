@@ -6,22 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Polymon</title>
 
-    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
 
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js" as="script">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
 
 <body>
 
   <div id="input-box" style="display: none">
     <h3>CryptoMon</h3>
-    <br />
     <br />
     <div id="second-window">
       <button class="login second rainbow">Login</button>
@@ -40,11 +39,11 @@
 
       <form action="/login" method="post">
         <label>Email</label>
-        <input type="email" name="email" placeholder="Red@CryptoMon.Com">
+        <input type="email" name="email" id="emailInput" placeholder="Red@CryptoMon.Com">
         <label>Password</label>
-        <input type="password" name="password" placeholder="1234Cats!">
-        <button type="submit" class="login second">Login</button>
-        <br />
+        <input type="password" name="password" id="passwordInput" placeholder="1234Cats!">
+        <button type="submit"  id="loginButton"class="login second">Login</button>
+        <button class="second guestLogin">Guest Login</button>
       </form>
 
     </div>
@@ -57,7 +56,6 @@
         <label>Password</label>
         <input type="password" name="password" placeholder="1234Cats!">
         <button class="second" type="submit">Sign-Up</button>
-        <br />
       </form>
 
     </div>
