@@ -28,6 +28,11 @@ let maps= {
     app.get('/mart', function(req, res) {
         res.render('mart.ejs');
     });
+
+    // mart page
+    app.get('/start', function(req, res) {
+        res.render('start.ejs');
+    });
     // DARATBASE USER VERIFICATION
     function checkForUserData(result, email){
       return result.filter(x=>x.name===email)[0]
