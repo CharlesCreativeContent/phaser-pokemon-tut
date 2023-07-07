@@ -7,6 +7,10 @@ const BLOCK_SIZE = 50; //px//
 let WALK_SPEED = 5; //px//
 let MONSTER_FEAR = 0.99; //Probability of seeing pokemon
 
+//////START THE MUSIC/////////
+var worldMusic = new Audio("https://dl.dropboxusercontent.com/s/0s83me8ndbkj1oa/Pok%C3%A9mon_LoFi.mp3?dl=0")
+worldMusic.loop = true
+worldMusic.play()
 
 const gameState = {
   counter: 0,
@@ -294,7 +298,12 @@ function checkForMonsters(camera) {
   let userMaxLvl = Math.max(...user.team.map(pok=>pok.lvl))
   if (dice > MONSTER_FEAR) {
   gameState.sceneOut(camera)
-  //play Music
+
+
+//BattleStart Music
+var battleMusic = new Audio("https://dl.dropboxusercontent.com/s/2nmns4lm4z5x51d/POKEMON-BATTLESTART.mp3?dl=0")
+battleMusic.loop = true
+battleMusic.play()
 
 
     let opponentStrength = Math.random()*100
