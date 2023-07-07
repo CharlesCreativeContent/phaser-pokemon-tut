@@ -1,3 +1,9 @@
+///////START BATTLE MUSIC/////////
+var battleMusic = new Audio("https://dl.dropboxusercontent.com/s/beredm2qwyd7t4b/Pok%C3%A9mon-BattleMusic.mp3?dl=0")
+battleMusic.loop = true
+battleMusic.play()
+
+
 let UI = {
   imgTries:0,
   expPool: [],
